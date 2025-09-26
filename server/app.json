@@ -1,0 +1,53 @@
+{
+  "name": "HaRaaS Parse Server",
+  "description": "A Parse Server backend for HaRaaS application",
+  "repository": "https://github.com/your-username/haraas",
+  "logo": "https://parseplatform.org/img/logo.svg",
+  "keywords": ["node", "express", "parse-server", "heroku"],
+  "image": "heroku/nodejs",
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "APP_ID": {
+      "description": "A unique identifier for your Parse app",
+      "generator": "secret"
+    },
+    "MASTER_KEY": {
+      "description": "A secret master key for your Parse app",
+      "generator": "secret"
+    },
+    "ENCRYPTION_KEY": {
+      "description": "Encryption key for Parse Server",
+      "generator": "secret"
+    },
+    "DATABASE_URI": {
+      "description": "MongoDB connection string (use MongoDB Atlas)",
+      "required": true
+    },
+    "SERVER_URL_PROD": {
+      "description": "Your Heroku app URL with /parse (e.g., https://your-app.herokuapp.com/parse)",
+      "required": true
+    },
+    "DASHBOARD_USERNAME": {
+      "description": "Username for Parse Dashboard",
+      "value": "admin"
+    },
+    "DASHBOARD_PASSWORD": {
+      "description": "Password for Parse Dashboard",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini",
+      "as": "DATABASE"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
